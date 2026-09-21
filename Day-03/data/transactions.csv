@@ -1,0 +1,9 @@
+date,type,amount,category,description
+2026-09-01,income,5000,Salary,September salary
+2026-09-02,expense,500,Food,Lunch with friends
+2026-09-03,expense,300,Transport,Bus + rickshaw
+2026-09-05,expense,150,Food,Groceries
+2026-09-07,expense,1200,Bills,Internet + electricity
+2026-09-10,expense,,Food,Missing amount
+2026-09-10,expense,200,Food,Snacks
+2026-09-10,expense,200,Food,Snacks

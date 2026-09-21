@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Practice output (practice scripts ei file gulo banay)
+data/practice_*
+
+# REAL financial data kokhono GitHub e jabe na
+# (public repo te shudhu sample data thakbe)
+data/private/
+data/real_*.csv
+data/real_*.json
