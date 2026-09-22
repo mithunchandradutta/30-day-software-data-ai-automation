@@ -1,0 +1,2 @@
+# sqlite3 Python-er standard library-r part -- kichu install lagbe na.
+# (Postgres/MySQL use korle: psycopg2-binary / mysql-connector-python)

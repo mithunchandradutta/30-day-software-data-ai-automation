@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# finance.db setup_db.py diye generate hoy -- prottekbar CSV theke rebuild kora jay,
+# tai repo-te store kora lagbe na
+data/finance.db
+
+# REAL financial data kokhono GitHub e jabe na
+# (public repo te shudhu sample data thakbe)
+data/private/
+data/real_*.csv
+data/real_*.json
