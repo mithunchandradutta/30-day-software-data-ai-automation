@@ -1,0 +1,68 @@
+// er_diagram.dot -- Graphviz source. PNG banate: dot -Tpng er_diagram.dot -o er_diagram.png
+digraph financial_schema {
+    rankdir=LR;
+    node [shape=plaintext, fontname="Helvetica"];
+    edge [fontname="Helvetica", fontsize=10, color="#555555"];
+    bgcolor="white";
+
+    accounts [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#eef4ff">
+            <TR><TD BGCOLOR="#3b5bdb"><FONT COLOR="white"><B>accounts</B></FONT></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>id</B> (PK)</TD></TR>
+            <TR><TD ALIGN="LEFT">name</TD></TR>
+            <TR><TD ALIGN="LEFT">type</TD></TR>
+        </TABLE>
+    >];
+
+    categories [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#eef9f0">
+            <TR><TD BGCOLOR="#2f9e44"><FONT COLOR="white"><B>categories</B></FONT></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>id</B> (PK)</TD></TR>
+            <TR><TD ALIGN="LEFT">name (UNIQUE)</TD></TR>
+            <TR><TD ALIGN="LEFT">group_type</TD></TR>
+        </TABLE>
+    >];
+
+    transactions [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#fff7e6">
+            <TR><TD BGCOLOR="#e8590c"><FONT COLOR="white"><B>transactions</B></FONT></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>id</B> (PK)</TD></TR>
+            <TR><TD ALIGN="LEFT"><I>account_id</I> (FK)</TD></TR>
+            <TR><TD ALIGN="LEFT"><I>category_id</I> (FK, nullable)</TD></TR>
+            <TR><TD ALIGN="LEFT">date</TD></TR>
+            <TR><TD ALIGN="LEFT">type</TD></TR>
+            <TR><TD ALIGN="LEFT">amount (nullable)</TD></TR>
+            <TR><TD ALIGN="LEFT">description</TD></TR>
+        </TABLE>
+    >];
+
+    loans [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#fff0f0">
+            <TR><TD BGCOLOR="#e03131"><FONT COLOR="white"><B>loans</B></FONT></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>id</B> (PK)</TD></TR>
+            <TR><TD ALIGN="LEFT"><I>account_id</I> (FK)</TD></TR>
+            <TR><TD ALIGN="LEFT">principal</TD></TR>
+            <TR><TD ALIGN="LEFT">interest_rate</TD></TR>
+            <TR><TD ALIGN="LEFT">start_date</TD></TR>
+            <TR><TD ALIGN="LEFT">due_date</TD></TR>
+            <TR><TD ALIGN="LEFT">status</TD></TR>
+        </TABLE>
+    >];
+
+    investments [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#f3f0ff">
+            <TR><TD BGCOLOR="#7048e8"><FONT COLOR="white"><B>investments</B></FONT></TD></TR>
+            <TR><TD ALIGN="LEFT"><B>id</B> (PK)</TD></TR>
+            <TR><TD ALIGN="LEFT"><I>account_id</I> (FK)</TD></TR>
+            <TR><TD ALIGN="LEFT">name</TD></TR>
+            <TR><TD ALIGN="LEFT">invested_amount</TD></TR>
+            <TR><TD ALIGN="LEFT">current_value</TD></TR>
+            <TR><TD ALIGN="LEFT">start_date</TD></TR>
+        </TABLE>
+    >];
+
+    accounts -> transactions [label="1-to-many", dir=back, arrowtail=crow, arrowhead=tee];
+    categories -> transactions [label="1-to-many", dir=back, arrowtail=crow, arrowhead=tee];
+    accounts -> loans [label="1-to-many", dir=back, arrowtail=crow, arrowhead=tee];
+    accounts -> investments [label="1-to-many", dir=back, arrowtail=crow, arrowhead=tee];
+}

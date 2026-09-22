@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# finance.db build_schema.py diye generate hoy -- schema + migration SQL theke
+# prottekbar rebuild kora jay, tai repo-te store kora lagbe na
+data/finance.db
+
+# REAL financial data kokhono GitHub e jabe na
+data/private/
+data/real_*.csv
+data/real_*.json

@@ -1,0 +1,5 @@
+# sqlite3 Python-er standard library-r part -- kichu install lagbe na.
+# ER diagram PNG banate Graphviz lage (system package, pip na):
+#   Ubuntu/Debian:  sudo apt install graphviz
+#   Mac:            brew install graphviz
+# Notun PNG banate: dot -Tpng diagrams/er_diagram.dot -o diagrams/er_diagram.png
