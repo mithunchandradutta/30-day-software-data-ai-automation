@@ -1,0 +1,7 @@
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Add patterns here for any diagram-tool cache/build files if needed

@@ -1,0 +1,26 @@
+digraph week1_pipeline {
+    rankdir=TB;
+    bgcolor="white";
+    node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.25,0.15"];
+    edge [fontname="Helvetica", fontsize=10, color="#555555"];
+
+    raw [label="Raw Transaction Data\n(CSV)", fillcolor="#e9ecef", color="#495057"];
+
+    py [label="Python Processing\n(Day 1-2)\nparsing, validation, categorizing", fillcolor="#fff7e6", color="#e8590c"];
+
+    pandas [label="pandas Analyzer\n(Day 3)\nfilter, groupby, clean", fillcolor="#eef4ff", color="#3b5bdb"];
+    sql [label="SQL Analyzer\n(Day 4)\nWHERE, GROUP BY, JOIN, CASE", fillcolor="#eef9f0", color="#2f9e44"];
+
+    db [label="Normalized Database Schema\n(Day 5)\naccounts, categories, transactions,\nloans, investments", fillcolor="#f3f0ff", color="#7048e8"];
+
+    git [label="Version-Controlled,\nDocumented Repository\n(Day 6)", fillcolor="#fff0f0", color="#e03131"];
+
+    raw -> py;
+    py -> pandas;
+    py -> sql;
+    pandas -> db [label="same numbers"];
+    sql -> db [label="same numbers"];
+    db -> git;
+
+    { rank=same; pandas; sql; }
+}

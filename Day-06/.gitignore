@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# Generated databases -- schema/migration SQL theke prottekbar rebuild kora jay
+*.db
+
+# Real financial data should never go to GitHub
+data/private/
+data/real_*.csv
+data/real_*.json
