@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Secrets (never commit)
+.env
+
+# Generated files (re-created every time you run fetch_rates.py)
+data/*.json
+logs/*.txt
+
+# Keep the empty folders in git
+!data/.gitkeep
+!logs/.gitkeep
