@@ -11,4 +11,4 @@ except requests.exceptions.HTTPError as e:
 except requests.exceptions.ConnectionError:
     print("No Internet")
 except requests.exceptions.Timeout:
-    Print("অনেক দেরি হচ্ছে")
+    print("অনেক দেরি হচ্ছে")
