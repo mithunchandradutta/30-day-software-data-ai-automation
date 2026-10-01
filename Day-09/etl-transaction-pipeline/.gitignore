@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# Generated database and run logs -- schema.sql + the pipeline rebuild these
+data/finance.db
+logs/pipeline_log.txt
+
+# Real financial data should never go to GitHub
+data/private/
+data/real_*.csv
+data/real_*.json
