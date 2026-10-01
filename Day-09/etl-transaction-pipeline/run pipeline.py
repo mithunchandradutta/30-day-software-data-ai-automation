@@ -23,14 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "data" / "finance.db"
 SCHEMA_PATH = BASE_DIR / "schema.sql"
 LOG_PATH = BASE_DIR / "logs" / "pipeline_log.txt"
+DEFAULT_RAW_PATH = BASE_DIR / "data" / "raw_transactions.csv"
 
 
 def ensure_schema(conn):
     conn.executescript(SCHEMA_PATH.read_text())
 
 
-def run_pipeline(raw_path="data/raw_transactions.csv"):
-    raw_rows = extract_transactions(raw_path)
+def run_pipeline(raw_path=None):
+    raw_rows = extract_transactions(raw_path or DEFAULT_RAW_PATH)
     cleaned_rows, transform_stats = transform_transactions(raw_rows)
 
     conn = sqlite3.connect(DB_PATH)
@@ -84,7 +85,7 @@ def log_run(summary):
 
 
 if __name__ == "__main__":
-    raw_path = sys.argv[1] if len(sys.argv) > 1 else "data/raw_transactions.csv"
+    raw_path = sys.argv[1] if len(sys.argv) > 1 else None
     summary = run_pipeline(raw_path)
     print_summary(summary)
     log_run(summary)
