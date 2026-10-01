@@ -1,0 +1,15 @@
+date,type,amount,category,description,account
+2026-09-01,income,5000,Salary,September salary,Main Account
+2026-09-02,expense,500,Food,Lunch with friends,Main Account
+2026-09-03,expense,300,Transport,Bus + rickshaw,Main Account
+2026-09-05,expense,150,Food,Groceries,Main Account
+2026-09-07,expense,1200,Bills,Internet + electricity,Main Account
+2026-09-10,expense,,Food,Missing amount,Main Account
+2026-09-10,expense,200,Food,Snacks,Main Account
+2026-09-10,expense,200,Food,Snacks,Main Account
+10/09/2026,expense,350,Transport,Rickshaw ride home,Main Account
+2026-09-12,expense,N/A,Bills,Mobile recharge,Main Account
+2026-09-13,expense,80,,  Cold coffee ,Main Account
+2026-09-14,expense,600,Shopping,New shoes,Cash
+2026-09-15,income,2000,Freelance,Logo design project,Main Account
+2026-09-16,expense,120,Food,Street food,Main Account
