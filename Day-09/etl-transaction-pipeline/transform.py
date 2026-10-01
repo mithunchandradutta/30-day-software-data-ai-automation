@@ -60,7 +60,7 @@ def transform_transactions(raw_rows):
  
         # Malformed = amount na, date na, ba type 'income'/'expense' er
         # baire kisu -- ei row business-e kono mane rakhena, tai skip.
-        if amount is None or date is None or txn_type not in VALID_TYPES:
+        if amount is None or date is None or txn_type not in VALID_TYPE:
             stats["skipped_malformed"] += 1
             continue
  
