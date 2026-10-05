@@ -1,0 +1,306 @@
+{
+  "name": "transaction-webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "transaction-in",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7c35039c-4926-46eb-9e16-23b858aa87fb",
+      "name": "Webhook",
+      "webhookId": "498d80d6-ce2e-4bd3-a8fc-9796cc39fc30"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a44b5173-c6e9-4b05-8510-c84b85e883f8",
+              "leftValue": "={{ $json.body.amount }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e5f570d4-c240-4f3e-96c1-df970f9c7183",
+              "leftValue": "={{ $json.body.date }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "3b7c157f-ffbc-46cd-9dc7-0ce20e2ac697",
+              "leftValue": "={{ $json.body.currency }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "05601a55-215b-479b-998f-65bc3c0db082",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"status\": \"error\", \"error\": \"amount, date and currency are required\" }",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        96
+      ],
+      "id": "5874fdca-8636-4321-a8af-de95f83a8808",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "384ea9b8-4950-4645-8a2a-38e93c78e840",
+              "name": "amount",
+              "value": "={{ Number($json.body.amount) }}",
+              "type": "number"
+            },
+            {
+              "id": "e7bf9ee6-ec41-4fc3-b9c3-4bc5632f9543",
+              "name": "date",
+              "value": "={{ $json.body.date }}",
+              "type": "string"
+            },
+            {
+              "id": "45ad20ac-d231-4e8e-ad2f-696f9949b872",
+              "name": "currency",
+              "value": "={{ $json.body.currency }}",
+              "type": "string"
+            },
+            {
+              "id": "3662b339-ad5a-49aa-9d64-8e8e06218166",
+              "name": "type",
+              "value": "={{ Number($json.body.amount) > 0 ? \"income\" : \"expense\" }}",
+              "type": "string"
+            },
+            {
+              "id": "c0d8dbec-6df3-4eac-b0e6-a8caa8360a89",
+              "name": "status",
+              "value": "received",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        448,
+        -96
+      ],
+      "id": "2c14499f-db44-400d-bc11-396f6d628b8a",
+      "name": "Transform"
+    },
+    {
+      "parameters": {
+        "url": "=https://open.er-api.com/v6/latest/{{ $json.currency }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "026e6699-926a-42d6-8252-5654f6dd4566",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c43e977b-92df-46be-bb43-71ce05d4fcf8",
+              "name": "amount",
+              "value": "={{ $('Transform').item.json.amount }}",
+              "type": "number"
+            },
+            {
+              "id": "e31380c6-7826-4161-a58e-5e1ad41d13b5",
+              "name": "date",
+              "value": "={{ $('Transform').item.json.date }}",
+              "type": "string"
+            },
+            {
+              "id": "bfccf910-b38b-4f15-a123-7137596d778d",
+              "name": "currency",
+              "value": "={{ $('Transform').item.json.currency }}",
+              "type": "string"
+            },
+            {
+              "id": "6c8db25a-cd7e-446f-a616-c91aa3388ee5",
+              "name": "type",
+              "value": "={{ $('Transform').item.json.type }}",
+              "type": "string"
+            },
+            {
+              "id": "8f03c5f7-b792-44a8-8d00-746f6c8b5e13",
+              "name": "status",
+              "value": "processed",
+              "type": "string"
+            },
+            {
+              "id": "141d4e19-ff7d-4d4b-b31c-28dcca9bae67",
+              "name": "bdt_rate",
+              "value": "={{ $json.rates.BDT }}",
+              "type": "number"
+            },
+            {
+              "id": "85260e80-6cfe-4dba-ac72-e85f801b8eb5",
+              "name": "converted_amount_bdt",
+              "value": "={{ $('Transform').item.json.amount * $json.rates.BDT }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        896,
+        -96
+      ],
+      "id": "1782e9cd-823d-4e73-a368-d01664f952a2",
+      "name": "Merge Result"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1120,
+        -96
+      ],
+      "id": "0ecfd1cd-1290-4b55-a3ab-2f0cc3e2c888",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Transform",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Result": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ac6bfbe3-b43d-441e-84f6-d6e90da65118",
+  "meta": {
+    "instanceId": "8d564c53402dce1bcf5030257cff49208b51321bcb0de7881c661e42c001a595"
+  },
+  "nodeGroups": [],
+  "id": "AkllmR72jJdR5win",
+  "tags": []
+}
