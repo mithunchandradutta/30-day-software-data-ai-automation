@@ -33,3 +33,13 @@ Day-02/
 Day-03/
 ...
 Day-30/
+```
+
+## Mirrors
+
+This repository is pushed to both platforms with a single push:
+
+- GitHub: https://github.com/mithunchandradutta/30-day-software-data-ai-automation
+- GitLab: https://gitlab.com/mithunchandradutta/30-day-software-data-ai-automation
+
+_Last updated: 2026-10-07 (dual push test)_
