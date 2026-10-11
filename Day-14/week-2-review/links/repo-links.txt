@@ -1,4 +1,4 @@
-# Nijer GitHub username onujayi thik koro
+
 Day 08: https://github.com/mithunchandradutta/api-transaction-fetcher
 Day 09: https://github.com/mithunchandradutta/etl-transaction-pipeline
 Day 10: https://github.com/mithunchandradutta/n8n-first-workflow
