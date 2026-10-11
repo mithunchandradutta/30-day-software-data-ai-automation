@@ -1,0 +1,12 @@
+Monthly Report - 2026-09
+==============================
+income | Salary | 25000.0 (1 tx)
+income | Freelance | 6000.0 (1 tx)
+expense | Food | 4200.0 (2 tx)
+expense | Utilities | 2300.0 (1 tx)
+expense | Transport | 1500.0 (1 tx)
+expense | Learning | 900.0 (1 tx)
+------------------------------
+Total income : 31000.0
+Total expense: 8900.0
+Net          : 22100.0
