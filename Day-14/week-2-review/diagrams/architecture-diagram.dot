@@ -1,0 +1,11 @@
+digraph Week12 {
+  rankdir=TB; node [shape=box, style="rounded,filled", fontname="Helvetica", fillcolor="#eef3ff"];
+  db   [label="Week 1: Database (Day 5)\naccounts / categories / transactions", fillcolor="#dff5e1"];
+  api  [label="Day 8: API Fetch\n(validated external data)"];
+  etl  [label="Day 9: ETL Pipeline\n(re-run safe)"];
+  n8n  [label="Day 10: n8n Workflow\nwebhook -> validate -> call backend"];
+  idem [label="Day 11+12: Duplicate Protection + Idempotency\nrequest_id + UNIQUE constraint (code AND n8n)", fillcolor="#fff2cc"];
+  rep  [label="Day 13: Scheduled Reporting\nDB -> report -> delivery (idempotent)"];
+  out  [label="Reliable, automated, re-runnable\nfinancial data system", fillcolor="#ffe0e0"];
+  api -> etl -> db; db -> n8n [dir=both]; n8n -> idem; idem -> db; db -> rep; idem -> out; rep -> out;
+}
