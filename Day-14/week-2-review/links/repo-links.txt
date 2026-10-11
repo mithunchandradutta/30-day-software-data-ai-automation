@@ -2,6 +2,6 @@
 Day 08: https://github.com/mithunchandradutta/30-day-software-data-ai-automation/tree/main/Day-08/api-transaction-fetcher
 Day 09: https://github.com/mithunchandradutta/30-day-software-data-ai-automation/tree/main/Day-09/etl-transaction-pipeline
 Day 10: https://github.com/mithunchandradutta/30-day-software-data-ai-automation/tree/main/Day-10/n8n-first-workflow
-Day 11: https://github.com/mithunchandradutta/duplicate-transaction-case-study
+Day 11: https://github.com/mithunchandradutta/30-day-software-data-ai-automation/tree/main/Day-11/duplicate-transaction-case-study
 Day 12: https://github.com/mithunchandradutta/idempotent-submission-flow
 Day 13: https://github.com/mithunchandradutta/n8n-automated-reporting
